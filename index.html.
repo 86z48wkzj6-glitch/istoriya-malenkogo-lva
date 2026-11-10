@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8f1e9">
+<title>История маленького Льва</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#faf6f0;
+ color:#594b40;
+ font-family:Georgia,serif;
+}
+header{
+ text-align:center;
+ padding:35px 15px 20px;
+}
+h1{
+ font-size:29px;
+ font-weight:normal;
+ margin:0 0 10px;
+}
+.subtitle{font-size:14px;color:#a58d7b}
+.hero{
+ margin:15px;
+ padding:35px 20px;
+ border-radius:24px;
+ background:linear-gradient(145deg,#f4dfd0,#f5eadc,#e7e8d9);
+ text-align:center;
+}
+.hero .lion{font-size:65px}
+.hero h2{font-size:24px;font-weight:normal}
+.hero p{font-size:14px;line-height:1.7}
+section{padding:15px}
+.section-title{
+ font-size:22px;
+ font-weight:normal;
+ margin:10px 0 18px;
+}
+.months{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px;
+}
+.month{
+ background:#fff;
+ border-radius:18px;
+ padding:20px 12px;
+ text-align:center;
+ box-shadow:0 3px 15px #9c82621a;
+}
+.month span{font-size:30px}
+.month h3{font-weight:normal;margin:10px 0 5px}
+.month p{font-size:12px;color:#a58d7b;margin:0}
+footer{
+ text-align:center;
+ padding:35px 15px;
+ color:#a58d7b;
+ font-size:13px;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>История маленького Льва</h1>
+<div class="subtitle">Самая нежная история моей жизни</div>
+</header>
+
+<div class="hero">
+<div class="lion">🦁</div>
+<h2>Привет, маленький Лев!</h2>
+<p>Здесь хранится твоя история.<br>
+Каждый день, каждая улыбка и каждое мгновение.</p>
+</div>
+
+<section>
+<h2 class="section-title">Наши месяцы</h2>
+<div class="months" id="months"></div>
+</section>
+
+<footer>
+С любовью, для Льва ♡
+</footer>
+
+<script>
+const birth = new Date(2026,7,28);
+const today = new Date();
+let years = today.getFullYear()-birth.getFullYear();
+let months = today.getMonth()-birth.getMonth();
+let days = today.getDate()-birth.getDate();
+if(days<0){
+ months--;
+ days = new Date(today.getFullYear(),today.getMonth(),0).getDate()+days;
+}
+if(months<0){years--;months+=12;}
+const age = [years?years+' г.':'',months?months+' мес.':'',days+' дн.'].filter(Boolean).join(' ');
+document.querySelector('.hero p').innerHTML =
+'Тебе уже '+age+'.<br>Каждый день, каждая улыбка и каждое мгновение.';
+
+const names=['Первый месяц','Второй месяц','Третий месяц','Четвёртый месяц','Пятый месяц','Шестой месяц','Седьмой месяц','Восьмой месяц','Девятый месяц','Десятый месяц','Одиннадцатый месяц','Первый год'];
+const icons=['🌿','☁️','🌸','🧸','🌼','🌙','🦋','🌷','⭐','🍯','🌻','🎂'];
+document.getElementById('months').innerHTML=names.map((name,i)=>
+`<div class="month"><span>${icons[i]}</span><h3>${name}</h3><p>Маленькие воспоминания</p></div>`
+).join('');
+</script>
+</body>
+</html>
